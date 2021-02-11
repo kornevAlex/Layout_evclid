@@ -120,6 +120,7 @@ textarea {
 
 /*header*/
 header {
+  position: relative;
   box-shadow: 5px 5px 80px #efefef;
 }
 
@@ -142,13 +143,17 @@ header .container {
 }
 
 .nav-list {
-  margin-right: 74px;
+  margin-right: 72px;
   display: flex;
   height: 100%;
   align-items: center;
 }
 
-.nav-item a {
+.nav-item:not(:last-child) {
+  margin-right: 85px;
+}
+
+.nav-item-ancher {
   font-size: 18px;
   line-height: 22px;
   font-weight: 600;
@@ -181,9 +186,6 @@ header .container {
   margin-bottom: 7px;
 }
 
-.nav-item:not(:last-child) {
-  margin-right: 85px;
-}
 
 .header .search {
   width: 26px;
@@ -207,15 +209,49 @@ header .container {
 
 /*Проектные решения любой сложности*/
 .main-row .container {
+  position: relative;
+  z-index: 2;
   color: white;
   width: 100%;
-  background: url('../img/angle-photo.jpg') center/cover no-repeat;
+  background: transparent;
   background-clip: content-box;
+}
+
+.main-row .swiper-one {
+  background: url('../img/angle-photo.jpg') center/cover no-repeat;
+}
+
+.main-row .swiper-two {
+  background: url('../img/brown-and-blue-glass-building-2093076\ 1.jpg') center/cover no-repeat;
+}
+
+.main-row .swiper-three {
+  background: url('../img/apartment-apartment-building-architecture-building-323705\ 1.jpg') center/cover no-repeat;
 }
 
 .main-block {
   padding-left: 78px;
   max-width: 1110px;
+}
+
+.swiper-container {
+  height: 100%;
+  z-index: -5;
+}
+
+.container-swiper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -5;
+}
+
+.container-swiper .container {
+  width: 100%;
+  height: 100%;
+
 }
 
 .main-row-title {
@@ -267,7 +303,13 @@ header .container {
 }
 
 .point:active {
-  border: 1px solid #FFFFFF;
+  outline: none;
+
+}
+
+.point:focus {
+  outline: none;
+  border: none;
 
 }
 
@@ -438,9 +480,7 @@ header .container {
   transition: color .2s ease;
 }
 
-.step-item:first-child button {
-  color: var(--orange);
-}
+
 
 .step-item:hover button {
   color: var(--orange);
@@ -455,7 +495,7 @@ header .container {
 }
 
 .step-animation-list {
-  display: flex;
+  display: none;
   justify-content: space-between;
   margin-top: 47px;
 }
@@ -467,10 +507,27 @@ header .container {
 .step-animation-img {
   margin-bottom: 8px;
   width: 50%;
-  height: auto;
+  height: 465px;
+}
+.step-animation-img-one {
   background: url('../img/dogovor.jpg') top/100% 100% no-repeat;
 }
+.step-animation-img-two {
+  background: url('../img/Rectangle\ 18.jpg') top/100% 100% no-repeat;
+}
+.step-animation-img-three{
+  background: url('../img/Rectangle\ 19.jpg') top/100% 100% no-repeat;
+}
+.step-animation-img-four{
+  background: url('../img/Rectangle\ 20.jpg') top/100% 100% no-repeat;
+}
 
+.is-active{
+  display: flex !important;
+}
+.is-active-tbl{
+  color: var(--orange);
+}
 .step-animation-list h3 {
   font-size: 24px;
 }
@@ -540,47 +597,40 @@ header .container {
   border-collapse: collapse;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-weight: 700;
-  padding: 27.3px 0;
+  padding: 27.7px 0 !important;
   margin-left: 4px;
   border-top: 1px solid #CACACA;
   border-bottom: 1px solid #CACACA;
+  border-left: none;
+  border-right: none;
   font-size: 24px;
   line-height: 32px;
   transition: .8s;
+  outline: none;
+  background: transparent;
 }
 
-.question-item:not(:nth-child(1)){
+.question-item span {
+  height: 50px;
+}
+
+.question-item:not(:nth-child(1)) {
   margin-top: -1px;
   z-index: 0;
-}
-summary {
-  transition: .8s;
-  outline: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-summary::-webkit-details-marker {
-  display: none;
-}
-
-.question-item label {
-  cursor: pointer;
 }
 
 .question-item:hover {
   border-color: var(--orange);
   color: var(--orange);
-  z-index:2;
+  z-index: 2;
 }
 
-.question-item button {
+.question-list button {
   width: 50px;
   height: 50px;
   background: url('../img/plusIK.svg') no-repeat;
-  margin-right: 2px;
 }
 
 /*footer*/
@@ -685,7 +735,7 @@ summary::-webkit-details-marker {
 
 .footer-form .footer-input-text::placeholder {
   line-height: 32px;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .footer-input-text,
@@ -706,7 +756,7 @@ summary::-webkit-details-marker {
 
 .footer-form textarea::placeholder {
   line-height: 34px;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 
@@ -774,6 +824,50 @@ summary::-webkit-details-marker {
   color: #CACACA;
 }
 
+
+/*Для аккордеона*/
+
+.ui-icon {
+  display: none !important;
+}
+
+.ui-accordion .ui-accordion-header {
+  display: flex;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+
+  border-color: var(--orange);
+  color: var(--orange);
+  z-index: 2;
+}
+
+
+.ui-state-active span button {
+  transition: all 0.6s;
+  transform: rotate(90deg);
+}
+
+.ui-widget-content {
+  border: none;
+}
+
+.ui-accordion .ui-accordion-content {
+  height: auto;
+  padding: 30px 10px 10px 10px;
+  font-size: 16px;
+  line-height: 32px;
+  font-family: 'Montserrat';
+  font-weight: 400;
+  color: #333333;
+
+}
+
 @media(max-width:1366px) and (min-width: 1201px) {
   .col-3-footer {
     display: none;
@@ -814,6 +908,13 @@ summary::-webkit-details-marker {
     order: -1;
     background: none;
   }
+
+.burger-nav{
+  display: inline;
+  position: fixed;
+  height: 100vh;
+  width: 50%;
+}
 
   .burger:hover .line {
     background: var(--dark_orange);
@@ -866,7 +967,7 @@ summary::-webkit-details-marker {
     margin-right: 20px;
   }
 
-  .point:first-child {
+  .point-active {
     background: white;
   }
 
@@ -963,8 +1064,10 @@ summary::-webkit-details-marker {
   .step-animation-description {
     min-width: 52.5%;
   }
-
-  .step-animation-img {
+  .step-animation-img{
+    height: auto;
+  }
+  .step-animation-img-one {
     margin-top: 9px;
     background: url('../img/dogovor_1024.png') no-repeat;
   }
@@ -1149,7 +1252,7 @@ summary::-webkit-details-marker {
   }
 
   .step-animation-list {
-    display: flex;
+    display: none;
     flex-direction: column;
     margin-top: 46px;
   }
@@ -1164,10 +1267,11 @@ summary::-webkit-details-marker {
     height: 284px;
     margin: 0;
     order: -2;
-    background: url('../img/dogovor_768.png') no-repeat;
     margin-bottom: 40px;
   }
-
+  .step-animation-img-one {
+    background: url('../img/dogovor_768.png') no-repeat;
+  }
   .step-animation-list p {
     max-width: 100%;
     margin-top: 5px;
@@ -1259,6 +1363,10 @@ summary::-webkit-details-marker {
 @media (max-width: 760px) {
   .FAQ h2 {
     white-space: unset;
+  }
+
+  .container h2 {
+    font-size: 28px;
   }
 
   .step-item:not(:last-child) {
@@ -1406,6 +1514,7 @@ summary::-webkit-details-marker {
     padding: 21px 0 !important;
     align-items: center;
   }
+
   .question-item .btn_1 {
     margin-right: 35px;
   }
@@ -1439,7 +1548,7 @@ summary::-webkit-details-marker {
   }
 
   .col-1-footer {
-
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1475,6 +1584,7 @@ summary::-webkit-details-marker {
   .instagram {
     background-size: contain;
   }
+
   .FAQ h2 {
     line-height: 29.26px;
   }
@@ -1499,64 +1609,69 @@ summary::-webkit-details-marker {
   .checkGroup {
     margin-left: 5px;
   }
-
+  .ui-accordion .ui-accordion-content{
+    font-size: 12px;
+  }
 }
 
-@media(max-width: 440px){
+@media(max-width: 576px) {
   .logo {
-  margin: 12px 0 5px 0;
-  width: 97px;
-}
+    margin: 12px 0 5px 0;
+    width: 97px;
+  }
 
-.burger {
-  order: 3;
-}
+  .burger {
+    order: 3;
+  }
 
-.search {
-  display: none;
-}
+  .search {
+    display: none;
+  }
 
-.container {
-  padding: 0 15px;
-  margin-bottom: 27px;
-}
+  .container {
+    padding: 0 15px;
+    margin-bottom: 27px;
+  }
 
-.container h2 {
-  white-space: unset;
-  font-size: 24px;
-}
+  .container h2 {
+    white-space: unset;
+    font-size: 24px;
+  }
 
-.main-row .container {
-  text-align: center;
-  background: url('../img/balconies_low.jpg') center/cover no-repeat
-}
+  .main-row .container {
+    text-align: center;
+    background: url('../img/balconies_low.jpg') center/cover no-repeat
+  }
 
-.main-block h1 {
-  padding-top: 32px;
-  margin-right: 10px;
-  font-size: 20px;
-  line-height: 24.38px;
-}
+  .main-block h1 {
+    padding-top: 32px;
+    margin-right: 10px;
+    font-size: 20px;
+    line-height: 24.38px;
+  }
 
-.main-block p {
-  padding: 6px 40px 0 25px;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: 500;
-}
-.main-block button {
-  margin-top: 34px;
-  margin-right: 22px;
-  padding: 5px 27px;
-  font-size: 12px;
-  margin-bottom: 40px;
-}
- .search {
-  display: none;
-}
-.points {
-  display: none;
-}
+  .main-block p {
+    padding: 6px 40px 0 25px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+  }
+
+  .main-block button {
+    margin-top: 34px;
+    margin-right: 22px;
+    padding: 5px 27px;
+    font-size: 12px;
+    margin-bottom: 40px;
+  }
+
+  .search {
+    display: none;
+  }
+
+  .points {
+    display: none;
+  }
 }
 
 @media (max-width:320px) {
@@ -1646,9 +1761,10 @@ summary::-webkit-details-marker {
   .step-animation-img {
     max-height: 160px;
     margin-bottom: 15px;
+  }
+  .step-animation-img-one{
     background: url('../img/dogovor_320.png') no-repeat;
   }
-
   .FAQ h2 {
     line-height: 29.26px;
   }
