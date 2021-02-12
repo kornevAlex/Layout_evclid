@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
       collapsible: true
     });
   });
-
   tbsList.forEach(el => {
     el.addEventListener('click', function (event) {
       tbsList.forEach(el => el.classList.remove('is-active-tbl'))
@@ -33,4 +32,10 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelector(`[data-target="${path}"]`).classList.add('is-active')
     })
   })
+  burger.addEventListener('click', function(){
+    const menu = document.querySelector('.menu__box')
+    menu.classList.toggle('menu__active')
+    this.classList.toggle('click__burger')
+  })
+
 })
