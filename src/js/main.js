@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
   $(function () {
     $("#accordion").accordion({
       active: false,
-      collapsible: true
+      collapsible: true,
+      heightStyle: "content",
     });
   });
   tbsList.forEach(el => {
