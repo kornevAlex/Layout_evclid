@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const menu = document.querySelector('.menu__box')
     menu.classList.toggle('menu__active')
     this.classList.toggle('click__burger')
+    this.firstElementChild.classList.toggle('line-active');
+    this.firstElementChild.classList.toggle('line-passive');
   })
 
 })
